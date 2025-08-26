@@ -1,0 +1,14 @@
+version: "2"
+sql:
+  - schema: "migrations"
+    queries: "internal/usercontext/infrastructure/persistence/sqlc/queries"
+    engine: "postgresql"
+    gen:
+      go:
+        package: "sqlcgen"
+        out: "internal/usercontext/infrastructure/persistence/sqlcgen"
+        emit_interface: true
+        emit_json_tags: true
+        overrides:
+          - db_type: "pg_catalog.uuid"
+            go_type: "github.com/google/uuid.UUID"
